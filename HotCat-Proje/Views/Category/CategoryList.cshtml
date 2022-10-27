@@ -1,0 +1,24 @@
+﻿@using HotCat_Proje.Models.Entity
+@model List<Categories>
+
+@{
+    ViewBag.Title = "CategoryList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kategori ID</th>
+        <th>Kategori Adı</th>
+    </tr>
+    <tbody>
+        @foreach (var ctrg in Model)
+        {
+            <tr>
+                <th>@ctrg.CategoryID</th>
+                <td>@ctrg.Category_Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Category/NewCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>

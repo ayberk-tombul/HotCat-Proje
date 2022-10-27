@@ -1,0 +1,26 @@
+﻿@using HotCat_Proje.Models.Entity
+@model List<Tables>
+@{
+    ViewBag.Title = "Table";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Masa ID</th>
+        <th>Masa NO</th>
+        <th>Masa Sil</th>
+    </tr>
+    <tbody>
+        @foreach (var tab in Model)
+        {
+            <tr>
+                <th>@tab.TableID</th>
+                <td>@tab.code</td>
+                <td><a href="/Tables/SIL/@tab.TableID" class="btn btn-danger">SİL</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Tables/NewTable/" class="btn btn-primary">Yeni Masa Ekle</a>
+

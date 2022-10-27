@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0b6a7bf76af141b6af1b1ce6f6501fff" Name="Diagram1">
+        <EntityTypeShape EntityType="HotCatDbModel.Categories" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.Employees" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.order_products" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.Orders" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.Products" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.Receipt" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.Roles" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.subCategories" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotCatDbModel.Tables" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="HotCatDbModel.FK_subCategories_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_Orders_Employees1" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_Receipt_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_order_products_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_order_products_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_Orders_Tables" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_Receipt_Orders1" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.FK_Products_subCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="HotCatDbModel.employee_role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

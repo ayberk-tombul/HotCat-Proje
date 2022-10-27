@@ -1,0 +1,27 @@
+﻿@using HotCat_Proje.Models.Entity
+@model List<Products>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ürün ID</th>
+        <th>Ürün Adı</th>
+        <th>Ürün Fiyatı</th>
+        <th>Ürün Stok</th>
+    </tr>
+    <tbody>
+        @foreach (var pro in Model)
+        {
+            <tr>
+                <th>@pro.ProductID</th>
+                <td>@pro.Product_Name</td>
+                <td>@pro.price</td>
+                <td>@pro.product_stock</td>
+            </tr>
+        }
+    </tbody>
+</table>

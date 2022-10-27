@@ -1,0 +1,27 @@
+﻿@using HotCat_Proje.Models.Entity
+@model List<subCategories>
+
+
+@{
+    ViewBag.Title = "subCategories";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Alt Kategori ID</th>
+        <th>Alt Kategori Adı</th>
+    </tr>
+    <tbody>
+        @foreach (var sub in Model)
+        {
+            <tr>
+                <th>@sub.Subcategory_ID</th>
+                <td>@sub.SubCategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Subcategory/NewsubCategory/" class="btn btn-primary">Yeni Alt Kategori Ekle</a>
+
+

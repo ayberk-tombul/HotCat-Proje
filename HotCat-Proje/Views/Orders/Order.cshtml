@@ -1,0 +1,23 @@
+﻿@using HotCat_Proje.Models.Entity
+@model List<Orders>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Sipariş ID</th>
+        <th>Sipariş Statü</th>
+    </tr>
+    <tbody>
+        @foreach (var ord in Model)
+        {
+            <tr>
+                <th>@ord.Order_ID</th>
+                <td>@ord.status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Orders/NewOrder/" class="btn btn-primary">Sipariş Ekle</a>

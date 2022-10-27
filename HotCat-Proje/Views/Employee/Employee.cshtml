@@ -1,0 +1,33 @@
+﻿@using HotCat_Proje.Models.Entity
+@model List<Employees>
+
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Çalışan ID</th>
+        <th>Çalışan İsim</th>
+        <th>Çalışan Soyisim</th>
+        <th>E-Posta</th>
+    </tr>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <th>@emp.EmployeeID</th>
+                <td>@emp.First_Name</td>
+                <td>@emp.Last_Name</td>
+                <td>@emp.Email</td>
+                <td><a href="/Employee/SIL/@emp.EmployeeID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Employee/GUNCELLE/@emp.EmployeeID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<a href="/Subcategory/NewCategory/" class="btn btn-primary">Yeni Çalışan Ekle</a>
+
+
