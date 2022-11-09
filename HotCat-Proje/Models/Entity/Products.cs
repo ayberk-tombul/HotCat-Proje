@@ -26,7 +26,6 @@ namespace HotCat_Proje.Models.Entity
         public double price { get; set; }
         public int product_stock { get; set; }
         public string image { get; set; }
-        public bool Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order_products> order_products { get; set; }

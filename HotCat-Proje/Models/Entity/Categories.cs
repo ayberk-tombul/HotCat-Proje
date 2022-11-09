@@ -22,7 +22,6 @@ namespace HotCat_Proje.Models.Entity
         }
     
         public int CategoryID { get; set; }
-        public bool Status { get; set; }
 
         [Required(ErrorMessage = "Kategori Adý Giriniz")]
 
