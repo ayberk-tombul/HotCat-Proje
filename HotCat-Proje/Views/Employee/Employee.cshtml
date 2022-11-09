@@ -1,5 +1,7 @@
 ﻿@using HotCat_Proje.Models.Entity
-@model List<Employees>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Employees>
 
 @{
     ViewBag.Title = "Employee";
@@ -12,6 +14,8 @@
         <th>Çalışan İsim</th>
         <th>Çalışan Soyisim</th>
         <th>E-Posta</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
     </tr>
     <tbody>
         @foreach (var emp in Model)
@@ -21,13 +25,14 @@
                 <td>@emp.First_Name</td>
                 <td>@emp.Last_Name</td>
                 <td>@emp.Email</td>
-                <td><a href="/Employee/SIL/@emp.EmployeeID" class="btn btn-danger">SİL</a></td>
-                <td><a href="/Employee/GUNCELLE/@emp.EmployeeID" class="btn btn-success">GÜNCELLE</a></td>
+                <td>@Html.ActionLink("SİL", "SIL", new { id = emp.EmployeeID }, new { @class="btn btn-danger",onclick="return confirm ('Silme işleminden eminmisiniz?')"})</td>
+                <td><a href="/Employee/GetEmployee/@emp.EmployeeID" class="btn btn-success">GÜNCELLE</a></td>
             </tr>
         }
     </tbody>
 
 </table>
-<a href="/Subcategory/NewCategory/" class="btn btn-primary">Yeni Çalışan Ekle</a>
+@Html.PagedListPager((IPagedList)Model,page =>Url.Action("Employee",new {page}))
+<a href="/Employee/NewEmployee/" class="btn btn-primary">Yeni Çalışan Ekle</a>
 
 

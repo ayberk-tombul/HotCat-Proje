@@ -1,0 +1,38 @@
+﻿@model HotCat_Proje.Models.Entity.Employees
+@{
+    ViewBag.Title = "NewEmployee";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Çalışan Adı</label>
+        @Html.TextBoxFor(m=>m.First_Name,new {@class= "form-control"})
+        @Html.ValidationMessageFor(m => m.First_Name, "", new {@style="Color:red"})
+    </div>
+    <div>
+        <label>Çalışan Soyadı</label>
+        <input type="text" class="form-control" name="Last_Name" required="" />
+    </div>
+    <div>
+        <label>Çalışan E-Posta</label>
+        <input type="text" class="form-control" name="Email" required="" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" class="form-control" name="Password" required="" />
+    </div>
+    <div>
+        <label>Resim</label>
+        <input type="text" class="form-control" name="image" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Çalışan Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Çalışan Ekleme İşlemi Başarılı.');
+        });
+    </script>
+</form>
+

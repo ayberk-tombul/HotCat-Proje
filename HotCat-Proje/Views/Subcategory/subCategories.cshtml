@@ -1,5 +1,7 @@
 ﻿@using HotCat_Proje.Models.Entity
-@model List<subCategories>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<subCategories>
 
 
 @{
@@ -11,6 +13,8 @@
     <tr>
         <th>Alt Kategori ID</th>
         <th>Alt Kategori Adı</th>
+        <th>Kategori Adı</th>
+        <th>GÜNCELLE</th>
     </tr>
     <tbody>
         @foreach (var sub in Model)
@@ -18,10 +22,13 @@
             <tr>
                 <th>@sub.Subcategory_ID</th>
                 <td>@sub.SubCategoryName</td>
+                <td>@sub.Categories.Category_Name</td>
+                <td><a href="/subCategory/GetSubCategory/@sub.Subcategory_ID" class="btn btn-success">GÜNCELLE</a></td>
             </tr>
         }
     </tbody>
 </table>
-<a href="/Subcategory/NewsubCategory/" class="btn btn-primary">Yeni Alt Kategori Ekle</a>
+@Html.PagedListPager((IPagedList)Model,page => Url.Action("subCategories",new {page}))
+<a href="/Subcategory/NewsubCategories/" class="btn btn-primary">Yeni Alt Kategori Ekle</a>
 
 

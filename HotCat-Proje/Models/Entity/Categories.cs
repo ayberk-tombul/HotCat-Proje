@@ -11,7 +11,8 @@ namespace HotCat_Proje.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Categories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,10 @@ namespace HotCat_Proje.Models.Entity
         }
     
         public int CategoryID { get; set; }
+        public bool Status { get; set; }
+
+        [Required(ErrorMessage = "Kategori Adý Giriniz")]
+
         public string Category_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

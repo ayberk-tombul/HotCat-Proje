@@ -1,0 +1,39 @@
+﻿@model HotCat_Proje.Models.Entity.subCategories
+
+
+@{
+    ViewBag.Title = "NewProduct";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" name="Product_Name" required="" />
+    </div>
+    <div>
+        <label>Hangi Alt Kategoriye Ait</label>
+        @Html.DropDownListFor(m => m.Subcategory_ID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div>
+        <label>Ürün Fiyatı</label>
+        <input type="text" class="form-control" name="price" required="" />
+    </div>
+    <div>
+        <label>Ürün Stok</label>
+        <input type="text" class="form-control" name="product_stock" required="" />
+    </div>
+    <div>
+        <label>Resim</label>
+        <input type="text" class="form-control" name="image" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Ürün Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Ürün Ekleme İşlemi Başarılı.');
+        });
+    </script>
+</form>
+

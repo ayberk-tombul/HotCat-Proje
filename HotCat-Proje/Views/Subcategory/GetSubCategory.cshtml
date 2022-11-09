@@ -1,0 +1,24 @@
+﻿@model HotCat_Proje.Models.Entity.subCategories
+@{
+    ViewBag.Title = "GetSubCategory";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "SubCategory", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Subcategory_ID)
+        @Html.TextBoxFor(m => m.Subcategory_ID, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.SubCategoryName)
+        @Html.TextBoxFor(m => m.SubCategoryName, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Categories)
+        @Html.DropDownListFor(m=>m.category_id,(List<SelectListItem>)ViewBag.dgr,new {@class = "form-control"})
+    </div>
+    <div>
+        <button class="btn btn-success">GÜNCELLE</button>
+    </div>
+
+}
+

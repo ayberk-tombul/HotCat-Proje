@@ -1,0 +1,20 @@
+﻿@model HotCat_Proje.Models.Entity.Tables
+@{
+    ViewBag.Title = "GetTable";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Tables", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.TableID)
+        @Html.TextBoxFor(m => m.TableID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.code)
+        @Html.TextBoxFor(m => m.code, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-success">Masa Güncelle</button>
+    </div>
+}
+

@@ -1,0 +1,26 @@
+﻿@model HotCat_Proje.Models.Entity.Employees
+@{
+    ViewBag.Title = "GetEmployee";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Employee", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EmployeeID)
+                    @Html.TextBoxFor(m => m.EmployeeID, new { @class = "form-control" })
+                    <br />
+                    @Html.LabelFor(m => m.First_Name)
+                    @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control" })
+                    <br />
+                    @Html.LabelFor(m => m.Last_Name)
+                    @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control" })
+                    <br />
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+                <div>
+                    <button class="btn btn-success">Personel Güncelle</button>
+                </div>
+            }
+

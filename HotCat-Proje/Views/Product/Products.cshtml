@@ -1,5 +1,7 @@
 ﻿@using HotCat_Proje.Models.Entity
-@model List<Products>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Products>
 
 @{
     ViewBag.Title = "Products";
@@ -12,6 +14,8 @@
         <th>Ürün Adı</th>
         <th>Ürün Fiyatı</th>
         <th>Ürün Stok</th>
+        <th>Ürün Alt Kategorisi</th>
+        <th>GÜNCELLE</th>
     </tr>
     <tbody>
         @foreach (var pro in Model)
@@ -21,7 +25,11 @@
                 <td>@pro.Product_Name</td>
                 <td>@pro.price</td>
                 <td>@pro.product_stock</td>
+                <td>@pro.subCategories.SubCategoryName</td>
+                <td><a href="/Product/GetProduct/@pro.ProductID" class="btn btn-success">GÜNCELLE</a></td>
             </tr>
         }
     </tbody>
 </table>
+@Html.PagedListPager((IPagedList)Model,page => Url.Action("Products", new {page})) 
+<a href="/Product/NewProduct/" class="btn btn-primary">Yeni Ürün Ekle</a>

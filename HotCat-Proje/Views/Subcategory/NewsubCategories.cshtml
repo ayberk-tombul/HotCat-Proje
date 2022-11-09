@@ -1,0 +1,26 @@
+﻿@model HotCat_Proje.Models.Entity.Categories
+
+@{
+    ViewBag.Title = "NewsubCategories";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Alt Kategori Adı</label>
+        <input type="text" class="form-control" name="SubCategoryName" required="" />
+    </div>
+    <div>
+        <label>Hangi Kategoriye Ait</label>
+        @Html.DropDownListFor(m => m.CategoryID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control", Name = "category_id" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Alt Kategori Ekle</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Alt Kategori Ekleme İşlemi Başarılı.');
+        });
+    </script>
+</form>
+

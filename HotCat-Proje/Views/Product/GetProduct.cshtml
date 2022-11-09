@@ -1,0 +1,32 @@
+﻿@model HotCat_Proje.Models.Entity.Products
+@{
+    ViewBag.Title = "GetProduct";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Product", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductID)
+        @Html.TextBoxFor(m => m.ProductID, new { @class = "form-control" , @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.Product_Name)
+        @Html.TextBoxFor(m => m.Product_Name, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.image)
+        @Html.TextBoxFor(m => m.image, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.product_stock)
+        @Html.TextBoxFor(m => m.product_stock, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.price)
+        @Html.TextBoxFor(m => m.price, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.subCategories)
+        @Html.DropDownListFor(m=>m.Subcategory_id,(List<SelectListItem>)ViewBag.dgr,new {@class = "form-control"})
+        @*@Html.TextBoxFor(m => m.Subcategory_id, new { @class = "form-control" })*@
+    </div>
+    <div>
+        <button class="btn btn-success">Ürün Güncelle</button>
+    </div>
+}

@@ -1,0 +1,22 @@
+﻿@model HotCat_Proje.Models.Entity.Categories
+
+
+@{
+    ViewBag.Title = "GetCategory";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update","Category", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m=>m.CategoryID)
+                    @Html.TextBoxFor(m => m.CategoryID, new {@class="form-control",@readonly = "readonly" })
+                    <br />
+                    @Html.LabelFor(m=>m.Category_Name)
+                    @Html.TextBoxFor(m=>m.Category_Name,new {@class="form-control"})
+                </div>
+                <div>
+                    <button class="btn btn-success">Kategori Güncelle</button>
+                </div>
+            }
+
