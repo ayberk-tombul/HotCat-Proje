@@ -1,0 +1,39 @@
+﻿@model HotCat_Proje.Models.Entity.Employees
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Animated Login Form | CodingNepal</title>
+    @*<link rel="stylesheet" href="style.css">*@
+    <link href="~/Login Form/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+    <div class="center">
+        <h1>Giriş</h1>
+        @using (Html.BeginForm("Login", "Employee", FormMethod.Post))
+        {
+            <div class="txt_field">
+                <input type="email" required="" name="Email">
+                <span></span>
+                <label>E-Posta</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" required="" name="Password">
+                <span></span>
+                <label>Şifre</label>
+            </div>
+            <div class="pass"></div>
+            <input type="submit" value="Login">
+            <div class="signup_link">
+                Personel Değil misin? <a href="#">Bernaya Selam Söyle O halleder</a>
+            </div>
+        }
+    </div>
+
+</body>
+</html>

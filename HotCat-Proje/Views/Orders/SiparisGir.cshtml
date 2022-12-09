@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "SiparisGir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div>
+    <label>Kategori seçiniz </label>
+    @Html.DropDownList("categories", (IEnumerable<SelectListItem>)ViewBag.categories, new { @class = "form-control" ,@value="0" })
+</div>
+
+<div>
+    <label>Alt Kategori seçiniz </label>
+    @Html.DropDownList("subCategories", (IEnumerable<SelectListItem>)ViewBag.subCategories, new { @class = "form-control", @disabled = "disabled", @value = "0" })
+</div>
+
+<div>
+    <label>Ürün seçiniz </label>
+    @Html.DropDownList("products", (IEnumerable<SelectListItem>)ViewBag.products, new { @class = "form-control", @disabled = "disabled", @value = "0" })
+</div>
+
+<div>
+    <label>Adet</label>
+    <input type="number" class="form-control" name="image"  id="quantity" value="1" min="0"/>
+</div>
+
+<div style="margin-top:15px">
+    <button class="btn btn-info" id="ekle">Siparişe Ürün Ekle </button>
+    <button class="btn btn-info" id="odeme">Ödeme yap </button>
+</div>
+
+<div class="container">
+    <h2> Siparişe Ait Ürünler</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Miktarı</th>
+            <th>Fiyat</th>
+            <th>Aksiyonlar</th>
+        </tr>
+        <tbody id="order_items">
+        </tbody>
+
+    </table>
+    
+        <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+            <p id="total"></p>
+        </div>
+</div>
+
+<script>
+    function totalCalculator(table) {
+        var total = 0
+        $.each(table.children('tr'), function (index, value) {
+            var price = parseFloat($(value).children('td').eq(2).text())
+            total = total + price
+        })
+        $('#total').text(`Toplam Tutar : ${total} TL `)
+        return total
+    }
+        function trCreator(item) {
+            var rowItem = `
+            <tr id="${item.order_id}/${item.product_id}">
+                <td>
+                ${item.Products.Product_Name}
+                </td>
+                <td>
+                ${item.quantity}
+                </td>
+                <td>
+                ${item.quantity * item.Products.price} TL
+                </td>
+                <td>
+                        <button class="btn btn-danger" id="sil">Sil</button>
+                </td>
+
+            </tr> `
+            return rowItem
+        }
+    $(document).ready(function () {
+        var order_items = '@Html.Raw(ViewBag.orderProducts)'
+        if (order_items != null) {
+            JSON.parse(order_items).order_products.forEach(el => {
+
+                $("#order_items").append(trCreator(el))
+            })
+            totalCalculator($('#order_items'))
+        }
+        if ($("#order_items").children("tr").length == 0) {
+            $("#odeme").prop("disabled", true)
+        }
+
+        })
+    // category kontrolü
+    $(document).on('change', '#categories', function () {
+        $("#subCategories").prop("disabled", false);
+        var selectedCategory = this.value
+        var subCategoryOptions = $("#subCategories").children('option')
+        $.each(subCategoryOptions, function (i, val) {
+            if (!($(val).val().split("/")[1] == selectedCategory)) {
+                $(val).hide()
+            } else {
+                $(val).show()
+            }
+
+        })
+    })
+
+    //subCategory kontrolü
+    $(document).on('change', '#subCategories', function () {
+        $("#products").prop("disabled", false);
+        var selectedSubCategory = this.value
+        var productOptions = $("#products").children('option')
+        $.each(productOptions, function (i, val) {
+            if (!($(val).val().split("/")[1] == selectedSubCategory.split('/')[0])) {
+                $(val).hide()
+            } else {
+                $(val).show()
+            }
+
+        })
+    })
+
+
+    $(document).on('click', '#ekle', function () {
+        var selectedProduct = $('#products').val().split('/')[0]
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SipariseUrunEkle", "Orders")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ masaId: '@ViewBag.masaId' , productId:selectedProduct , quantity:parseInt($('#quantity').val())}),
+            dataType: "json",
+            success: function (data) {
+                //alert(data);
+                if ($('tr[id^="' + data.order_id + '/' + data.product_id + '"]').length !== 0) {
+                    $('tr[id^="' + data.order_id + '/' + data.product_id + '"]').eq(0).remove()
+                }
+                $('#order_items').append(trCreator(data))
+
+                alert('Ürün Eklendi')
+                totalCalculator($('#order_items'))
+            },
+        });
+    })
+
+    $(document).on('click', '#sil', function () {
+        var order_item_id = $(this).parent().parent()
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SiparisUrunSil", "Orders")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ order_id: parseInt(order_item_id.attr('id').split('/')[0]), product_id: parseInt(order_item_id.attr('id').split('/')[1])}),
+            dataType: "json",
+            success: function (data) {
+                $(order_item_id).remove()
+                alert(data);
+                totalCalculator($('#order_items'))
+            },
+        });
+    })
+
+
+    $(document).on('click', '#odeme', function () {
+        var order_item_id = $("#order_items").children('tr').eq(0)
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("OdemeYap", "Orders")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ order_id: parseInt(order_item_id.attr('id').split('/')[0]), total: totalCalculator($('#order_items')) }),
+            dataType: "json",
+            success: function (data) {
+                alert(data)
+                window.location.replace('@Request.Url.GetLeftPart(UriPartial.Authority)'+'/Orders/Order')
+
+            },
+        });
+    })
+
+
+</script>

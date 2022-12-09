@@ -12,14 +12,14 @@ namespace HotCat_Proje.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Employees
+    public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employees()
+        public Employee()
         {
-            this.Orders = new HashSet<Orders>();
-            this.Receipt = new HashSet<Receipt>();
-            this.Roles = new HashSet<Roles>();
+            this.Orders = new HashSet<Order>();
+            this.Receipts = new HashSet<Receipt>();
+            this.Roles = new HashSet<Role>();
         }
     
         public int EmployeeID { get; set; }
@@ -30,10 +30,10 @@ namespace HotCat_Proje.Models.Entity
         public string image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Receipt> Receipt { get; set; }
+        public virtual ICollection<Receipt> Receipts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Roles> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

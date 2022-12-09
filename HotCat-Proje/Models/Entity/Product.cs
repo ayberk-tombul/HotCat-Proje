@@ -12,19 +12,24 @@ namespace HotCat_Proje.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public Product()
         {
-            this.subCategories = new HashSet<subCategories>();
+            this.order_products = new HashSet<order_products>();
         }
     
-        public int CategoryID { get; set; }
-        public string Category_Name { get; set; }
+        public int ProductID { get; set; }
+        public string Product_Name { get; set; }
+        public int Subcategory_id { get; set; }
+        public double price { get; set; }
+        public int product_stock { get; set; }
+        public string image { get; set; }
         public Nullable<bool> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subCategories> subCategories { get; set; }
+        public virtual ICollection<order_products> order_products { get; set; }
+        public virtual subCategory subCategory { get; set; }
     }
 }

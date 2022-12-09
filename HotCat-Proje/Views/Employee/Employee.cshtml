@@ -21,6 +21,7 @@
         @foreach (var emp in Model)
         {
             <tr>
+                <td><img src="@emp.image"  width="64" height="64"></td>
                 <th>@emp.EmployeeID</th>
                 <td>@emp.First_Name</td>
                 <td>@emp.Last_Name</td>

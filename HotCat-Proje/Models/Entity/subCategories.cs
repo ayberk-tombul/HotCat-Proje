@@ -23,7 +23,8 @@ namespace HotCat_Proje.Models.Entity
         public int Subcategory_ID { get; set; }
         public string SubCategoryName { get; set; }
         public int category_id { get; set; }
-
+        public Nullable<bool> Status { get; set; }
+    
         public virtual Categories Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }

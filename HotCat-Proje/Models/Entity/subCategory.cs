@@ -12,19 +12,21 @@ namespace HotCat_Proje.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class subCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public subCategory()
         {
-            this.subCategories = new HashSet<subCategories>();
+            this.Products = new HashSet<Product>();
         }
     
-        public int CategoryID { get; set; }
-        public string Category_Name { get; set; }
+        public int Subcategory_ID { get; set; }
+        public string SubCategoryName { get; set; }
+        public int category_id { get; set; }
         public Nullable<bool> Status { get; set; }
     
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subCategories> subCategories { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

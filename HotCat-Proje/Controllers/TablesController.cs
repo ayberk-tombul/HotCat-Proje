@@ -11,6 +11,7 @@ namespace HotCat_Proje.Controllers
     {
         // GET: Tables
         HotCatDbEntities db = new HotCatDbEntities();
+        [Authorize]
         public ActionResult Table()
         {
             var values = db.Tables.ToList();

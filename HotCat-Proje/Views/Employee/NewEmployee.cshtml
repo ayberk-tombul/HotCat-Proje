@@ -7,8 +7,8 @@
 <form class="form-group" method="post">
     <div>
         <label>Çalışan Adı</label>
-        @Html.TextBoxFor(m=>m.First_Name,new {@class= "form-control"})
-        @Html.ValidationMessageFor(m => m.First_Name, "", new {@style="Color:red"})
+        @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.First_Name, "", new { @style = "Color:red" })
     </div>
     <div>
         <label>Çalışan Soyadı</label>
@@ -21,6 +21,10 @@
     <div>
         <label>Password</label>
         <input type="password" class="form-control" name="Password" required="" />
+    </div>
+    <div>
+        <label>Rol Seçiniz </label>
+        @Html.DropDownList("dgr", (IEnumerable<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
     </div>
     <div>
         <label>Resim</label>

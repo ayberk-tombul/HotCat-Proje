@@ -5,19 +5,18 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<table class="table table-bordered">
-    <tr>
-        <th>Sipariş ID</th>
-        <th>Sipariş Statü</th>
-    </tr>
-    <tbody>
-        @foreach (var ord in Model)
+<div class="container">
+    <div class="row">
+        @foreach (var masa in (IEnumerable<SelectListItem>)ViewBag.masalar)
         {
-            <tr>
-                <th>@ord.Order_ID</th>
-                <td>@ord.status</td>
-            </tr>
+            <div class="panel panel-default col-sm-4">
+                <div class="panel-heading"> <b>Masa No : @masa.Text</b></div>
+                <div class="panel-body">
+
+                    <a href="/Orders/SiparisGir/@masa.Value" class="btn btn-primary">Sipariş Ekle</a>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
-<a href="/Orders/NewOrder/" class="btn btn-primary">Sipariş Ekle</a>
+    </div>
+</div>
+      

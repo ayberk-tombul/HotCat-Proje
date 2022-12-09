@@ -9,6 +9,7 @@ using PagedList.Mvc;
 
 namespace HotCat_Proje.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         // GET: Product

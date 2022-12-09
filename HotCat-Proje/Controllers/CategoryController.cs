@@ -11,6 +11,7 @@ using PagedList.Mvc;
 
 namespace HotCat_Proje.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         // GET: Category
