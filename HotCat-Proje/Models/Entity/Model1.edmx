@@ -4,280 +4,280 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HotCatDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Categories">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-          </Key>
-          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category_Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Status" Type="bit" />
-        </EntityType>
-        <EntityType Name="employee_role">
-          <Key>
-            <PropertyRef Name="RoleID" />
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="RoleID" Type="int" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Employees">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="First_Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="image" Type="varchar" MaxLength="200" Nullable="false" />
-        </EntityType>
-        <EntityType Name="order_products">
-          <Key>
-            <PropertyRef Name="order_id" />
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="order_id" Type="int" Nullable="false" />
-          <Property Name="product_id" Type="int" Nullable="false" />
-          <Property Name="quantity" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Orders">
-          <Key>
-            <PropertyRef Name="Order_ID" />
-          </Key>
-          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="employee_id" Type="int" Nullable="false" />
-          <Property Name="table_id" Type="int" Nullable="false" />
-          <Property Name="status" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Products">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Product_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Subcategory_id" Type="int" Nullable="false" />
-          <Property Name="price" Type="float" Nullable="false" />
-          <Property Name="product_stock" Type="int" Nullable="false" />
-          <Property Name="image" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Status" Type="bit" />
-        </EntityType>
-        <EntityType Name="Receipt">
-          <Key>
-            <PropertyRef Name="ReceiptID" />
-          </Key>
-          <Property Name="ReceiptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="order_id" Type="int" Nullable="false" />
-          <Property Name="employee_id" Type="int" Nullable="false" />
-          <Property Name="price" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Roles_ID" />
-          </Key>
-          <Property Name="Roles_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="subCategories">
-          <Key>
-            <PropertyRef Name="Subcategory_ID" />
-          </Key>
-          <Property Name="Subcategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SubCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="category_id" Type="int" Nullable="false" />
-          <Property Name="Status" Type="bit" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="Tables">
-          <Key>
-            <PropertyRef Name="TableID" />
-          </Key>
-          <Property Name="TableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_employee_role_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="employee_role" Type="Self.employee_role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="employee_role">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_employee_role_Roles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-          <End Role="employee_role" Type="Self.employee_role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Roles_ID" />
-            </Principal>
-            <Dependent Role="employee_role">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_order_products_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="order_products" Type="Self.order_products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="Order_ID" />
-            </Principal>
-            <Dependent Role="order_products">
-              <PropertyRef Name="order_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_order_products_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="order_products" Type="Self.order_products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="order_products">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_Employees1">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="employee_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_Tables">
-          <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tables">
-              <PropertyRef Name="TableID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="table_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_subCategories">
-          <End Role="subCategories" Type="Self.subCategories" Multiplicity="1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="subCategories">
-              <PropertyRef Name="Subcategory_ID" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="Subcategory_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Receipt_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="Receipt">
-              <PropertyRef Name="employee_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Receipt_Orders1">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="Order_ID" />
-            </Principal>
-            <Dependent Role="Receipt">
-              <PropertyRef Name="order_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_subCategories_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-          <End Role="subCategories" Type="Self.subCategories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="subCategories">
-              <PropertyRef Name="category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="HotCatDbModelStoreContainer">
-          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="employee_role" EntityType="Self.employee_role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="order_products" EntityType="Self.order_products" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Receipt" EntityType="Self.Receipt" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="subCategories" EntityType="Self.subCategories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_employee_role_Employees" Association="Self.FK_employee_role_Employees">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="employee_role" EntitySet="employee_role" />
-          </AssociationSet>
-          <AssociationSet Name="FK_employee_role_Roles" Association="Self.FK_employee_role_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="employee_role" EntitySet="employee_role" />
-          </AssociationSet>
-          <AssociationSet Name="FK_order_products_Orders" Association="Self.FK_order_products_Orders">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="order_products" EntitySet="order_products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_order_products_Products" Association="Self.FK_order_products_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="order_products" EntitySet="order_products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Employees1" Association="Self.FK_Orders_Employees1">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Tables" Association="Self.FK_Orders_Tables">
-            <End Role="Tables" EntitySet="Tables" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_subCategories" Association="Self.FK_Products_subCategories">
-            <End Role="subCategories" EntitySet="subCategories" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Receipt_Employees" Association="Self.FK_Receipt_Employees">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Receipt" EntitySet="Receipt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Receipt_Orders1" Association="Self.FK_Receipt_Orders1">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="Receipt" EntitySet="Receipt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_subCategories_Categories" Association="Self.FK_subCategories_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="subCategories" EntitySet="subCategories" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="HotCatDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HotCatDbModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="HotCatDbModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="HotCatDbModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="order_products" EntityType="HotCatDbModel.Store.order_products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders" EntityType="HotCatDbModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="HotCatDbModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Receipt" EntityType="HotCatDbModel.Store.Receipt" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="HotCatDbModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="subCategories" EntityType="HotCatDbModel.Store.subCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="HotCatDbModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tables" EntityType="HotCatDbModel.Store.Tables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="employee_role" EntityType="HotCatDbModel.Store.employee_role" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_subCategories_Categories" Association="HotCatDbModel.Store.FK_subCategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="subCategories" EntitySet="subCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Employees1" Association="HotCatDbModel.Store.FK_Orders_Employees1">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_Employees" Association="HotCatDbModel.Store.FK_Receipt_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Receipt" EntitySet="Receipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_products_Orders" Association="HotCatDbModel.Store.FK_order_products_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="order_products" EntitySet="order_products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_products_Products" Association="HotCatDbModel.Store.FK_order_products_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="order_products" EntitySet="order_products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Tables" Association="HotCatDbModel.Store.FK_Orders_Tables">
+      <End Role="Tables" EntitySet="Tables" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_Orders1" Association="HotCatDbModel.Store.FK_Receipt_Orders1">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Receipt" EntitySet="Receipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_subCategories" Association="HotCatDbModel.Store.FK_Products_subCategories">
+      <End Role="subCategories" EntitySet="subCategories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_role_Employees" Association="HotCatDbModel.Store.FK_employee_role_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="employee_role" EntitySet="employee_role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_role_Roles" Association="HotCatDbModel.Store.FK_employee_role_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="employee_role" EntitySet="employee_role" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Status" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="image" Type="varchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="order_products">
+    <Key>
+      <PropertyRef Name="order_id" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employee_id" Type="int" Nullable="false" />
+    <Property Name="table_id" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Subcategory_id" Type="int" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="product_stock" Type="int" Nullable="false" />
+    <Property Name="image" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Status" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="ReceiptID" />
+    </Key>
+    <Property Name="ReceiptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="employee_id" Type="int" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Roles_ID" />
+    </Key>
+    <Property Name="Roles_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="subCategories">
+    <Key>
+      <PropertyRef Name="Subcategory_ID" />
+    </Key>
+    <Property Name="Subcategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubCategoryName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Tables">
+    <Key>
+      <PropertyRef Name="TableID" />
+    </Key>
+    <Property Name="TableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="employee_role">
+    <Key>
+      <PropertyRef Name="Employees_EmployeeID" />
+      <PropertyRef Name="Roles_Roles_ID" />
+    </Key>
+    <Property Name="Employees_EmployeeID" Type="int" Nullable="false" />
+    <Property Name="Roles_Roles_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_subCategories_Categories">
+    <End Role="Categories" Type="HotCatDbModel.Store.Categories" Multiplicity="1" />
+    <End Role="subCategories" Type="HotCatDbModel.Store.subCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="subCategories">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Employees1">
+    <End Role="Employees" Type="HotCatDbModel.Store.Employees" Multiplicity="1" />
+    <End Role="Orders" Type="HotCatDbModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_Employees">
+    <End Role="Employees" Type="HotCatDbModel.Store.Employees" Multiplicity="1" />
+    <End Role="Receipt" Type="HotCatDbModel.Store.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_products_Orders">
+    <End Role="Orders" Type="HotCatDbModel.Store.Orders" Multiplicity="1" />
+    <End Role="order_products" Type="HotCatDbModel.Store.order_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="order_products">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_products_Products">
+    <End Role="Products" Type="HotCatDbModel.Store.Products" Multiplicity="1" />
+    <End Role="order_products" Type="HotCatDbModel.Store.order_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="order_products">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Tables">
+    <End Role="Tables" Type="HotCatDbModel.Store.Tables" Multiplicity="1" />
+    <End Role="Orders" Type="HotCatDbModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tables">
+        <PropertyRef Name="TableID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="table_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_Orders1">
+    <End Role="Orders" Type="HotCatDbModel.Store.Orders" Multiplicity="1" />
+    <End Role="Receipt" Type="HotCatDbModel.Store.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_subCategories">
+    <End Role="subCategories" Type="HotCatDbModel.Store.subCategories" Multiplicity="1" />
+    <End Role="Products" Type="HotCatDbModel.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subCategories">
+        <PropertyRef Name="Subcategory_ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Subcategory_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_role_Employees">
+    <End Role="Employees" Type="HotCatDbModel.Store.Employees" Multiplicity="1" />
+    <End Role="employee_role" Type="HotCatDbModel.Store.employee_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="employee_role">
+        <PropertyRef Name="Employees_EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_role_Roles">
+    <End Role="employee_role" Type="HotCatDbModel.Store.employee_role" Multiplicity="*" />
+    <End Role="Roles" Type="HotCatDbModel.Store.Roles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Roles_ID" />
+      </Principal>
+      <Dependent Role="employee_role">
+        <PropertyRef Name="Roles_Roles_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HotCatDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -542,119 +542,118 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HotCatDbModelStoreContainer" CdmEntityContainer="HotCatDbEntities">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="HotCatDbModel.Categories">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="HotCatDbModel.Employees">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
-                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="image" ColumnName="image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="order_products">
-            <EntityTypeMapping TypeName="HotCatDbModel.order_products">
-              <MappingFragment StoreEntitySet="order_products">
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="HotCatDbModel.Orders">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="table_id" ColumnName="table_id" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="HotCatDbModel.Products">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
-                <ScalarProperty Name="Subcategory_id" ColumnName="Subcategory_id" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="product_stock" ColumnName="product_stock" />
-                <ScalarProperty Name="image" ColumnName="image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Receipt">
-            <EntityTypeMapping TypeName="HotCatDbModel.Receipt">
-              <MappingFragment StoreEntitySet="Receipt">
-                <ScalarProperty Name="ReceiptID" ColumnName="ReceiptID" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="price" ColumnName="price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="HotCatDbModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="subCategories">
-            <EntityTypeMapping TypeName="HotCatDbModel.subCategories">
-              <MappingFragment StoreEntitySet="subCategories">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Subcategory_ID" ColumnName="Subcategory_ID" />
-                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
-                <ScalarProperty Name="category_id" ColumnName="category_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="HotCatDbModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="HotCatDbModel.Tables">
-              <MappingFragment StoreEntitySet="Tables">
-                <ScalarProperty Name="TableID" ColumnName="TableID" />
-                <ScalarProperty Name="code" ColumnName="code" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="employee_role" TypeName="HotCatDbModel.employee_role" StoreEntitySet="employee_role">
-            <EndProperty Name="Employees">
-              <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-            </EndProperty>
-            <EndProperty Name="Roles">
-              <ScalarProperty Name="Roles_ID" ColumnName="RoleID" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HotCatDbModelStoreContainer" CdmEntityContainer="HotCatDbEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Categories)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Employees)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_products">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.order_products)">
+        <MappingFragment StoreEntitySet="order_products">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Orders)">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="table_id" ColumnName="table_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Products)">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="Subcategory_id" ColumnName="Subcategory_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="product_stock" ColumnName="product_stock" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Receipt">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Receipt)">
+        <MappingFragment StoreEntitySet="Receipt">
+          <ScalarProperty Name="ReceiptID" ColumnName="ReceiptID" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Roles)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subCategories">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.subCategories)">
+        <MappingFragment StoreEntitySet="subCategories">
+          <ScalarProperty Name="Subcategory_ID" ColumnName="Subcategory_ID" />
+          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tables">
+      <EntityTypeMapping TypeName="IsTypeOf(HotCatDbModel.Tables)">
+        <MappingFragment StoreEntitySet="Tables">
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="employee_role" TypeName="HotCatDbModel.employee_role" StoreEntitySet="employee_role">
+      <EndProperty Name="Employees">
+        <ScalarProperty Name="EmployeeID" ColumnName="Employees_EmployeeID" />
+      </EndProperty>
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="Roles_ID" ColumnName="Roles_Roles_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -668,7 +667,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

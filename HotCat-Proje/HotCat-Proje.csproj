@@ -336,6 +336,7 @@
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\Entity\Model1.edmx.sql" />
     <Content Include="Models\Entity\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -343,6 +344,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="README.md" />
     <Content Include="web\css\fontawesome-all.min.css" />
     <Content Include="web\css\style.css" />
     <Content Include="web\images\7047pmy46pk91.jpg" />
